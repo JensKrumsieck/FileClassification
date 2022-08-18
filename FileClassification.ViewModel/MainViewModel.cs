@@ -19,9 +19,9 @@ public class MainViewModel : BaseViewModel
 
     private string _coSolv = "";
 
-    private Molecule _currentMolecule;
+    private Molecule? _currentMolecule;
 
-    private Stack<string> _files;
+    private Stack<string>? _files;
     private string _ligand = "";
 
     private string _metal = "";
@@ -36,7 +36,7 @@ public class MainViewModel : BaseViewModel
     [JsonIgnore]
     public Molecule CurrentMolecule
     {
-        get => _currentMolecule;
+        get => _currentMolecule!;
         set => Set(ref _currentMolecule, value);
     }
 
@@ -76,7 +76,7 @@ public class MainViewModel : BaseViewModel
         set => Set(ref _coordNo, value);
     }
 
-    public string Group { get; set; }
+    public string Group { get; set; } = "";
 
     public int SubstNo
     {
@@ -96,7 +96,7 @@ public class MainViewModel : BaseViewModel
     [JsonIgnore]
     public Stack<string> Files
     {
-        get => _files;
+        get => _files!;
         set => Set(ref _files, value);
     }
 
@@ -135,7 +135,7 @@ public class MainViewModel : BaseViewModel
     public void Next()
     {
         Load(Files.Peek());
-        Title = Path.GetFileName(_currentMolecule.Title);
+        Title = Path.GetFileName(CurrentMolecule.Title);
         OnPropertyChanged(nameof(Files));
     }
 }
