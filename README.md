@@ -1,0 +1,2 @@
+# FileClassification
+A quick and dirty project to sort chemical files from one directory into several subdirectories based on type and metal. Also adds meta data for data processing together with [PorphyStruct](https://github.com/jenskrumsieck/porphystruct).
