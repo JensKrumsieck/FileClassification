@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -56,17 +57,28 @@ namespace FileClassification
         private void Viewport3D_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var hits = Viewport3D.Viewport.FindHits(e.GetPosition(Viewport3D));
+            var shift = (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
+            var alt = (Keyboard.Modifiers & ModifierKeys.Alt) == ModifierKeys.Alt;
             foreach (var hit in hits.OrderBy(s => s.Distance))
             {
                 if (hit.Visual.GetType() != typeof(Atom3D)) continue;
-                var av3d = hit.Visual as Atom3D;
-                if (av3d != null) ViewModel.SelectedAtom = av3d.Atom.Symbol;
+                if (hit.Visual is not Atom3D av3d) continue;
+                
+                //write data
+                if (shift && alt) ViewModel.CoordNo++;
+                else if (shift) ViewModel.AxialLigand = av3d.Atom.Symbol;
+                else if (alt) ViewModel.SubstNo++;
+                else
+                {
+                    ViewModel.Group = av3d.Atom.Block != "f-Block" ? av3d.Atom.Group.ToString() : "Ln";
+                    ViewModel.Metal = av3d.Atom.Symbol;
+                }
             }
         }
 
         private void SubmitClick(object sender, RoutedEventArgs e)
         {
-            var m = MetalTextBox.Text;
+            var m = ViewModel.Metal;
             var clazz = ClassComboBox.Text;
             if(!ViewModel.Classes.Contains(clazz)) ViewModel.Classes.Add(clazz);
             var path = $"{ViewModel.WorkingDir}\\{clazz}\\{m}\\";
@@ -76,6 +88,7 @@ namespace FileClassification
             var rawFilename =Path.GetFileName(filename);
             
             File.Move(filename,  path + rawFilename);
+            File.WriteAllText(path+rawFilename + ".meta.json",JsonSerializer.Serialize(ViewModel, new JsonSerializerOptions { WriteIndented = true }));
             ViewModel.Next();
         }
     }

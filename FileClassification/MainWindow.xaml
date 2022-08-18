@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:ChemSharp.Molecules.HelixToolkit.Controls;assembly=ChemSharp.Molecules.HelixToolkit"
         xmlns:tc="clr-namespace:ThemeCommons.Controls;assembly=ThemeCommons"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="800">
     <tc:DefaultWindow.TitlebarContent>
         <TextBlock VerticalAlignment="Center">Classification</TextBlock>
     </tc:DefaultWindow.TitlebarContent>
@@ -16,6 +16,7 @@
             <h:HelixViewport3D ShowViewCube="False" ShowCoordinateSystem="True" AllowDrop="True"
                                ZoomExtentsWhenLoaded="True" IsHeadLightEnabled="True"
                                MouseLeftButtonDown="Viewport3D_OnMouseLeftButtonDown"
+                               
                                x:Name="Viewport3D">
                 <h:DefaultLights/>
                 <h:DirectionalHeadLight/>
@@ -36,21 +37,55 @@
                     <StackPanel Margin="0 10 0 0">
                         <TextBlock FontWeight="Bold">Classification Data</TextBlock>
                         <StackPanel>
-                            <TextBlock FontWeight="Bold">Metal</TextBlock>
-                            <TextBlock FontSize="8">(You can Click to Select)</TextBlock>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Text="{Binding SelectedAtom}" Width="200" x:Name="MetalTextBox" Margin="0 0 5 0" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel>
                             <TextBlock FontWeight="Bold">Class</TextBlock>
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox IsEditable="True" ItemsSource="{Binding Classes}" x:Name="ClassComboBox" Width="200"/>
                             </StackPanel>
                         </StackPanel>
+                        
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Ligand</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="200" x:Name="LigandTextBox" Margin="0 0 5 0" Text="{Binding Ligand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Metal</TextBlock>
+                            <TextBlock FontSize="8">(You can Click to Select)</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Text="{Binding Metal}" Width="200" x:Name="MetalTextBox" Margin="0 0 5 0" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Axial Ligand</TextBlock>
+                            <TextBlock FontSize="8">(You can Shift-Click to Select)</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="200" x:Name="AxialTextBox" Margin="0 0 5 0" Text="{Binding AxialLigand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Coordination Number</TextBlock>
+                            <TextBlock FontSize="8">(You can Shift-Alt-Click Atoms to Increase)</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="200" x:Name="CoordNoTextBox" Margin="0 0 5 0" Text="{Binding CoordNo}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">No. of Substituents</TextBlock>
+                            <TextBlock FontSize="8">(You can Alt-Click Atoms to Increase)</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="200" x:Name="SubstNoTextBox" Margin="0 0 5 0" Text="{Binding SubstNo}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Solvents & co</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="200" x:Name="CoSolvTextBox" Margin="0 0 5 0" Text="{Binding CoSolv}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <Button Click="SubmitClick" IsDefault="True">Submit</Button>
+                <Button Click="SubmitClick" IsDefault="True" Margin="0 10">Submit</Button>
             </StackPanel>
         </UniformGrid>
     </Grid>
