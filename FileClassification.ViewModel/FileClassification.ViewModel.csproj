@@ -6,9 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ChemSharp.Molecules" Version="1.0.15" />
-      <PackageReference Include="ChemSharp.Molecules.HelixToolkit" Version="1.0.15" />
-      <PackageReference Include="JensKrumsieck.TinyMVVM" Version="1.0.0" />
+        <PackageReference Include="ChemSharp.Molecules" Version="1.0.15"/>
+        <PackageReference Include="ChemSharp.Molecules.HelixToolkit" Version="1.0.15"/>
+        <PackageReference Include="JensKrumsieck.TinyMVVM" Version="1.0.0"/>
     </ItemGroup>
 
 </Project>

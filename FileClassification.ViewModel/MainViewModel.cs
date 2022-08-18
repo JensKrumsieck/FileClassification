@@ -11,15 +11,27 @@ namespace FileClassification.ViewModel;
 
 public class MainViewModel : BaseViewModel
 {
-    [JsonIgnore] public override string Title { get; set; } = "";
+    private string _axialLigand = "";
 
-    [JsonIgnore]
-    public ObservableCollection<string> Classes { get; } = new();
+    private string _class = "";
 
-    private Stack<string> _files;
-    private string _workingDir = "";
+    private int _coordNo;
+
+    private string _coSolv = "";
 
     private Molecule _currentMolecule;
+
+    private Stack<string> _files;
+    private string _ligand = "";
+
+    private string _metal = "";
+
+    private int _substNo;
+    private string _workingDir = "";
+
+    [JsonIgnore]
+    public ObservableCollection<string> Classes { get; } =
+        new() {"Corrole", "Porphyrin", "Norcorrole", "Porphycene", "Corrphycene"};
 
     [JsonIgnore]
     public Molecule CurrentMolecule
@@ -28,51 +40,51 @@ public class MainViewModel : BaseViewModel
         set => Set(ref _currentMolecule, value);
     }
 
-    private string _metal = "";
-    
     public string Metal
     {
         get => _metal;
         set => Set(ref _metal, value);
     }
 
-    private string _axialLigand = "";
+    public string Class
+    {
+        get => _class;
+        set => Set(ref _class, value);
+    }
+
     public string AxialLigand
     {
         get => _axialLigand;
         set => Set(ref _axialLigand, value);
     }
-    private string _ligand = "";
+
     public string Ligand
     {
         get => _ligand;
         set => Set(ref _ligand, value);
     }
-    
-    private string _coSolv = "";
+
     public string CoSolv
     {
         get => _coSolv;
         set => Set(ref _coSolv, value);
     }
 
-    private int _coordNo = 0;
-    public  int CoordNo
+    public int CoordNo
     {
         get => _coordNo;
         set => Set(ref _coordNo, value);
     }
-    
-    public string Group { get;set; }
-    
-    private int _substNo = 0;
-    public  int SubstNo
+
+    public string Group { get; set; }
+
+    public int SubstNo
     {
         get => _substNo;
         set => Set(ref _substNo, value);
     }
 
-    
+
     [JsonIgnore]
     public string WorkingDir
     {
@@ -80,7 +92,7 @@ public class MainViewModel : BaseViewModel
         set => Set(ref _workingDir, value, LoadFiles);
     }
 
-    
+
     [JsonIgnore]
     public Stack<string> Files
     {
@@ -91,14 +103,12 @@ public class MainViewModel : BaseViewModel
     /// <summary>
     ///     3D Representation of Atoms
     /// </summary>
-    /// 
     [JsonIgnore]
     public ObservableCollection<Atom3D> Atoms3D { get; } = new();
 
     /// <summary>
     ///     3D Representation of Bonds
     /// </summary>
-    /// 
     [JsonIgnore]
     public ObservableCollection<Bond3D> Bonds3D { get; } = new();
 
@@ -110,6 +120,7 @@ public class MainViewModel : BaseViewModel
         foreach (var atom in CurrentMolecule.Atoms) Atoms3D.Add(new Atom3D(atom));
         foreach (var bond in CurrentMolecule.Bonds) Bonds3D.Add(new Bond3D(bond));
     }
+
     private void LoadFiles()
     {
         var supported = new[] {"cif", "xyz", "mol2"};
@@ -124,6 +135,7 @@ public class MainViewModel : BaseViewModel
     public void Next()
     {
         Load(Files.Peek());
+        Title = Path.GetFileName(_currentMolecule.Title);
         OnPropertyChanged(nameof(Files));
     }
 }

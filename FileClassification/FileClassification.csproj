@@ -8,12 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ChemSharp.Molecules.HelixToolkit" Version="1.0.15" />
-      <PackageReference Include="JensKrumsieck.ThemeCommons.MaterialDesign" Version="1.0.0" />
+        <PackageReference Include="ChemSharp.Molecules.HelixToolkit" Version="1.0.15"/>
+        <PackageReference Include="JensKrumsieck.ThemeCommons.MaterialDesign" Version="1.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FileClassification.ViewModel\FileClassification.ViewModel.csproj" />
+        <ProjectReference Include="..\FileClassification.ViewModel\FileClassification.ViewModel.csproj"/>
     </ItemGroup>
 
 </Project>
