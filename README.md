@@ -1,4 +1,10 @@
 # FileClassification
+
+
+[![GitHub Pre-Releases](https://img.shields.io/github/downloads-pre/JensKrumsieck/FileClassification/latest/total)](https://github.com/JensKrumsieck/FileClassification/releases/latest)
+[![GitHub Releases](https://img.shields.io/github/downloads-pre/JensKrumsieck/FileClassification/total)](https://github.com/JensKrumsieck/FileClassification/releases/latest)
+
+
 A quick and dirty project to sort chemical files from one directory into several subdirectories based on type and metal. Also adds meta data for data processing together with [PorphyStruct](https://github.com/jenskrumsieck/porphystruct).
 ![](./.github/screenshot.png)
 
