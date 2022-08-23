@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.Json.Serialization;
 using ChemSharp.Molecules;
 using ChemSharp.Molecules.HelixToolkit;
@@ -134,8 +135,16 @@ public class MainViewModel : BaseViewModel
 
     public void Next()
     {
-        Load(Files.Peek());
+        if (Files.Any())
+            Load(Files.Peek());
         Title = Path.GetFileName(CurrentMolecule.Title);
         OnPropertyChanged(nameof(Files));
+        CoordNo = 0;
+        SubstNo = 0;
+        Metal = "";
+        Ligand = "";
+        AxialLigand = "";
+        Group = "";
+        CoSolv = "";
     }
 }
