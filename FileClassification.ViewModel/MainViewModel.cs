@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text.Json.Serialization;
 using ChemSharp.Molecules;
 using ChemSharp.Molecules.HelixToolkit;
